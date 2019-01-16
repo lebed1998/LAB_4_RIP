@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    {{ teacher.last_name }} {{ teacher.first_name|slice:"1" }}. {{ teacher.patronymic|slice:"1" }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ teacher }}</h1>
+    <div>
+        Ведёт предметы:
+        <ul>
+            {% for subject in teacher.subjects.all %}
+            <li>
+                <a href="{% url 'subject' subject.id %}">{{ subject }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

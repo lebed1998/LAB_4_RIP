@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    {{ subject.name }}
+{% endblock %}
+
+{% block content %}
+    <h1>Замечательный предмет {{ subject.name }}</h1>
+
+    <div>Семестр: {{ subject.semester|default:"всегда" }}</div>
+        <div>
+            Преподаватели:
+            <ul>
+            {% for teacher in subject.teachers.all %}
+                <li>
+                    <a href="{% url 'teacher' teacher.id %}">{{ teacher }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
